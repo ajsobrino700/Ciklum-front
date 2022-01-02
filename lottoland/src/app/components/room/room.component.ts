@@ -14,6 +14,8 @@ export class RoomComponent implements OnInit {
   numberRound:number
   room:Room
   round:Round
+  playerOneWin:boolean=false
+  playerTwoWin:boolean=false
 
   constructor(private gameService:GameService) {
     this.numberRound=0
@@ -30,6 +32,13 @@ export class RoomComponent implements OnInit {
       this.updateRoom(data)
       this.numberRound++
       this.round= data
+      if(data.playerOne === data.playerTwo){
+        this.playerOneWin =true
+        this.playerTwoWin =true
+      }else{
+        this.playerOneWin = this.winPlayerOne(this.round.playerOne,this.round.playerTwo)
+        this.playerTwoWin = !this.playerOneWin
+      }
     })
   }
 
@@ -37,6 +46,7 @@ export class RoomComponent implements OnInit {
   resetData(){
     this.numberRound=0
     this.room = new Room(0,0,0,[])
+    this.round = new Round("","")
   }
 
   updateRoom(data:Round){

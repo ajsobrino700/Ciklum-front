@@ -7,3 +7,39 @@
     transform: translate(-50%, -50%);
 }
 
+
+.result {
+    border-radius: 25px;
+    height: 75px;
+    text-align: center;
+    margin-top: 25%;
+}
+
+.summary{
+    padding: 20px;
+}
+
+table,td,tr,th,thead,tbody {
+    margin:10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+}
+
+
+.header-player {
+    font-weight: bold;
+    padding: 15%;
+}
+
+
+.round-result{
+    padding: 10%;
+}
+
+.border-table{
+    margin: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 20px;
+}

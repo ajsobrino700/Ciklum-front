@@ -14,50 +14,60 @@
   <div class="row">
    <div class="col-4">
     <table>
-      <thead>
       <tr>
-        <th>Player One<th>
-          <th>Player Two<th>
+        <th>Player One</th>
+        <th></th>
+        <th>Player Two</th>
       </tr>
-      </thead>
-      <tbody>
         <tr *ngFor="let round of room.lastRound">
-          <td>{{round.playerOne}}</td>
-          <td>{{round.playerTwo}}</td>
+          <td class="border-table" [ngStyle]="{'background-color':round.playerOne===round.playerTwo?'#6CE553':winPlayerOne(round.playerOne,round.playerTwo)?'#6CE553':'#F42746'}">{{round.playerOne}}</td>
+          <td></td>
+          <td class="border-table" [ngStyle]="{'background-color':round.playerOne===round.playerTwo?'#6CE553':winPlayerOne(round.playerTwo,round.playerOne)?'#6CE553':'#F42746'}">
+            {{round.playerTwo}}
+          </td>
         </tr>
-      </tbody>
     </table>
-  </div>
+    </div>
+
+
   <div class="col-4">
+    <div class="row">
+      <div class="col-6" > <div class="header-player">Player One </div>
+        <div class="result" *ngIf ="round.playerOne!=''"  [ngStyle]="{'background-color':playerOneWin?'#6CE553':'#F42746'}"> 
+          <div class="round-result"> {{round.playerOne}} </div> 
+        </div>
+      </div>
+      <div class="col-6"><div class=" header-player">Player Two </div>
+        <div class="result" *ngIf ="round.playerTwo!=''" [ngStyle]="{'background-color':playerTwoWin?'#6CE553':'#F42746'}"> 
+         <div class="round-result"> {{round.playerTwo}} </div> 
+        </div>
+      </div>
+    </div>
+    <div class="row center">
+        <div class="col-12"><button type="button" class="btn btn-danger" (click)="playRound()">Play round</button></div>
+    </div> 
+  </div>
+
+ <div class="col-4 summary">
   <table>
     <tr>
       <th>Wins Player One </th>
-      <th>Wins Player Two</th>
-      <th>Draw</th>
-    </tr>
-    <tr>
-      <th>{{room.winPlayerOne}} </th>
-      <th>{{room.winPlayerTwo}}</th>
-      <th>{{room.draw}}</th>
-    </tr>
+        <th>Wins Player Two</th>
+        <th>Draw</th>
+      </tr>
+      <tr>
+        <th>{{room.winPlayerOne}} </th>
+        <th>{{room.winPlayerTwo}}</th>
+        <th>{{room.draw}}</th>
+      </tr>
 
 
-  </table>
+    </table>
   </div>
 
-  </div>
-  <div class="row">
-    <div class="col-4">
-    </div>
-    <div class="col-4 center">
-      <div class="row">
-        <div class="col-6">Player One <br>
-          {{round.playerOne}}
-        </div>
-        <div class="col-6">Player Two <br>
-        {{round.playerTwo}}</div>
-      </div>
-    <button type="button" class="btn btn-danger" (click)="playRound()">Play round</button>
-   </div>
-  </div>
 </div>
+
+</div>
+
+
+
