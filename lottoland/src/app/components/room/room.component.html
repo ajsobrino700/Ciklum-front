@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <div class="navbar-brand"> <button type="button" class="btn btn-light" (click)="resetData()">Reset</button></div>
+
+      <div class="navbar-brand">Room</div>
+      
+      <div class="navbar-brand">
+         The number of round: {{numberRound}}
+      </div>
+    </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+   <div class="col-4">
+    <table>
+      <thead>
+      <tr>
+        <th>Player One<th>
+          <th>Player Two<th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let round of room.lastRound">
+          <td>{{round.playerOne}}</td>
+          <td>{{round.playerTwo}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-4">
+  <table>
+    <tr>
+      <th>Wins Player One </th>
+      <th>Wins Player Two</th>
+      <th>Draw</th>
+    </tr>
+    <tr>
+      <th>{{room.winPlayerOne}} </th>
+      <th>{{room.winPlayerTwo}}</th>
+      <th>{{room.draw}}</th>
+    </tr>
+
+
+  </table>
+  </div>
+
+  </div>
+  <div class="row">
+    <div class="col-4">
+    </div>
+    <div class="col-4 center">
+      <div class="row">
+        <div class="col-6">Player One <br>
+          {{round.playerOne}}
+        </div>
+        <div class="col-6">Player Two <br>
+        {{round.playerTwo}}</div>
+      </div>
+    <button type="button" class="btn btn-danger" (click)="playRound()">Play round</button>
+   </div>
+  </div>
+</div>
