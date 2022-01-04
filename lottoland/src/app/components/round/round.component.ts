@@ -1,3 +1,4 @@
+import { RoomService } from './../../service/room.service';
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { OptionGame } from 'src/app/model/option-game';
 import { Round } from 'src/app/model/round';
@@ -11,22 +12,18 @@ import { GameService } from 'src/app/service/game.service';
 export class RoundComponent implements OnInit {
 
  
-  @Input("lastRound")
   lastRound:Round[]=[]
-
-  @Input("round")
-  round:Round = new Round("","")
-
-  @Input("numberRound")
   numberRound:number=0
 
   playerOneWin:boolean=false
   playerTwoWin:boolean=false
   
 
-  constructor(private gameService:GameService) { }
+  constructor(private gameService:GameService,private roomService:RoomService) { }
 
   ngOnInit(): void {
+    this.numberRound=this.roomService.numberRound
+    this.lastRound=this.roomService.lastRound
   }
 
 
@@ -42,12 +39,12 @@ export class RoundComponent implements OnInit {
     this.gameService.playRound().subscribe(data=>{
       this.updateRoom(data)
       this.numberRound++
-      this.round= data
+      this.roomService.numberRound++
       if(data.playerOne === data.playerTwo){
         this.playerOneWin =true
         this.playerTwoWin =true
       }else{
-        this.playerOneWin = this.winPlayerOne(this.round.playerOne,this.round.playerTwo)
+        this.playerOneWin = this.winPlayerOne(data.playerOne,data.playerTwo)
         this.playerTwoWin = !this.playerOneWin
       }
     })
@@ -95,8 +92,8 @@ export class RoundComponent implements OnInit {
 
   resetData(){
     this.numberRound=0
-    this.round = new Round("","")
     this.lastRound = []
+    this.roomService.reset()
   }
 
 }

@@ -21,25 +21,25 @@
     <div class="col-4">
       <div class="row">
         <div class="col-4" > <div class="header-player">Player One </div>
-          <div class="result" *ngIf ="round.playerOne!=''"  [ngStyle]="{'background-color':playerOneWin?'#6CE553':'#F42746'}"> 
-            <div class="round-result"> {{round.playerOne}} </div>
+          <div class="result" *ngIf ="lastRound.length!=0"  [ngStyle]="{'background-color':playerOneWin?'#6CE553':'#F42746'}"> 
+            <div class="round-result"> {{lastRound[0].playerOne}} </div>
             <div class="icon">
-                <img [src]="getUrlImage(round.playerOne)">
+                <img [src]="getUrlImage(lastRound[0].playerOne)">
             </div>
           </div>
         </div>
         <div class="col-4"><div class="header-player">Player Two </div>
-          <div class="result" *ngIf ="round.playerTwo!=''" [ngStyle]="{'background-color':playerTwoWin?'#6CE553':'#F42746'}"> 
-           <div class="round-result"> {{round.playerTwo}} </div>
+          <div class="result" *ngIf ="lastRound.length!=0" [ngStyle]="{'background-color':playerTwoWin?'#6CE553':'#F42746'}"> 
+           <div class="round-result"> {{lastRound[0].playerTwo}} </div>
            <div class="icon">
-            <img [src]="getUrlImage(round.playerTwo)">
+            <img [src]="getUrlImage(lastRound[0].playerTwo)">
            </div>
           </div>
         </div>
         <div class="col-4">
             <div class="header-player">Result</div>
             <div>
-                <div class="result-round" *ngIf="round.playerOne!='' && round.playerTwo != ''"> {{getTextResult(round.playerOne,round.playerTwo)}} </div> 
+                <div class="result-round" *ngIf="lastRound.length!=0"> {{getTextResult(lastRound[0].playerOne,lastRound[0].playerTwo)}} </div> 
             </div>
         </div>
       </div>
