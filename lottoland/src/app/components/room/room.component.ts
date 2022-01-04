@@ -14,10 +14,11 @@ export class RoomComponent implements OnInit {
   numberRound:number
   room:Room
   round:Round
-  playerOneWin:boolean=false
-  playerTwoWin:boolean=false
+ 
 
-  constructor(private gameService:GameService) {
+  viewSummary:boolean=true
+
+  constructor() {
     this.numberRound=0
     this.room = new Room(0,0,0,[])
     this.round =new Round("","")
@@ -27,61 +28,15 @@ export class RoomComponent implements OnInit {
     
   }
 
-  playRound(){
-    this.gameService.playRound().subscribe(data=>{
-      this.updateRoom(data)
-      this.numberRound++
-      this.round= data
-      if(data.playerOne === data.playerTwo){
-        this.playerOneWin =true
-        this.playerTwoWin =true
-      }else{
-        this.playerOneWin = this.winPlayerOne(this.round.playerOne,this.round.playerTwo)
-        this.playerTwoWin = !this.playerOneWin
-      }
-    })
+
+  goRound(){
+    this.viewSummary = ! this.viewSummary
+  }
+
+  goSummary(){
+    this.viewSummary = ! this.viewSummary
   }
 
 
-  resetData(){
-    this.numberRound=0
-    this.room = new Room(0,0,0,[])
-    this.round = new Round("","")
-  }
-
-  updateRoom(data:Round){
-    this.room.lastRound.unshift(data)
-    if(this.room.lastRound.length >10){
-      this.room.lastRound.pop()
-    }
-
-    if(data.playerOne === data.playerTwo){
-      this.room.draw++
-    }else if(this.winPlayerOne(data.playerOne,data.playerTwo)){
-      this.room.winPlayerOne++
-    }else{
-      this.room.winPlayerTwo++
-    }
-
-  }
-
-  winPlayerOne(playerOne:string,playerTwo:string){
-    console.log(OptionGame.ROCK.toString())
-    if(playerOne===OptionGame.PAPER.toString() && playerTwo === OptionGame.ROCK.toString()){
-      return true
-    }
-
-    if(playerOne==OptionGame.ROCK.toString() && playerTwo == OptionGame.SCISSORS.toString()){
-      return true
-    }
-
-    if(playerOne==OptionGame.SCISSORS.toString() && playerTwo == OptionGame.PAPER.toString()){
-      return true
-    }
-
-    return false
-  }
-
-  
 
 }

@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="row">
+     <div class="col-4">
+      <table>
+        <tr>
+          <th>Player One</th>
+          <th></th>
+          <th>Player Two</th>
+        </tr>
+          <tr *ngFor="let round of lastRound">
+            <td class="border-table" [ngStyle]="{'background-color':round.playerOne===round.playerTwo?'#6CE553':winPlayerOne(round.playerOne,round.playerTwo)?'#6CE553':'#F42746'}">{{round.playerOne}}</td>
+            <td></td>
+            <td class="border-table" [ngStyle]="{'background-color':round.playerOne===round.playerTwo?'#6CE553':winPlayerOne(round.playerTwo,round.playerOne)?'#6CE553':'#F42746'}">
+              {{round.playerTwo}}
+            </td>
+          </tr>
+      </table>
+      </div>
+  
+  
+    <div class="col-4">
+      <div class="row">
+        <div class="col-4" > <div class="header-player">Player One </div>
+          <div class="result" *ngIf ="round.playerOne!=''"  [ngStyle]="{'background-color':playerOneWin?'#6CE553':'#F42746'}"> 
+            <div class="round-result"> {{round.playerOne}} </div>
+            <div class="icon">
+                <img [src]="getUrlImage(round.playerOne)">
+            </div>
+          </div>
+        </div>
+        <div class="col-4"><div class="header-player">Player Two </div>
+          <div class="result" *ngIf ="round.playerTwo!=''" [ngStyle]="{'background-color':playerTwoWin?'#6CE553':'#F42746'}"> 
+           <div class="round-result"> {{round.playerTwo}} </div>
+           <div class="icon">
+            <img [src]="getUrlImage(round.playerTwo)">
+           </div>
+          </div>
+        </div>
+        <div class="col-4">
+            <div class="header-player">Result</div>
+            <div>
+                <div class="result-round" *ngIf="round.playerOne!='' && round.playerTwo != ''"> {{getTextResult(round.playerOne,round.playerTwo)}} </div> 
+            </div>
+        </div>
+      </div>
+     
+  
+      <div class="row center">
+          <div class="col-12"><button type="button" class="btn btn-danger" (click)="playRound()">Play round</button></div>
+      </div> 
+    </div>
+  
+    <div class="col-4">
+        <div class="header-round">The number of round</div>
+        <div class="number-round">{{numberRound}}</div>
+    </div>
+  
+    
+  
+  </div>
+    
+  </div>
+  
+  <div class="reset"> 
+    <button type="button" class="btn btn-primary" style="width:80%; margin:15% 10%; border-radius:15px;" (click)="resetData()">Reset</button>
+  </div>
+  
