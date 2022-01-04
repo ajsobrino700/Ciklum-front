@@ -68,7 +68,8 @@ table,td,tr,th,thead,tbody {
     padding: 15%;
 }
 
-
-.reset {
-    bottom: 50px;
+#footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
