@@ -24,6 +24,17 @@ export class RoundComponent implements OnInit {
   ngOnInit(): void {
     this.numberRound=this.roomService.numberRound
     this.lastRound=this.roomService.lastRound
+    if(this.lastRound.length!=0){
+      let currentRound = this.lastRound[0]
+      if(currentRound.playerOne === currentRound.playerTwo){
+        this.playerOneWin =true
+        this.playerTwoWin =true
+      }else{
+        this.playerOneWin = this.winPlayerOne(currentRound.playerOne,currentRound.playerTwo)
+        this.playerTwoWin = !this.playerOneWin
+      }
+    }
+     
   }
 
 
