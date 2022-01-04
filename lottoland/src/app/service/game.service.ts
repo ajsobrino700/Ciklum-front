@@ -8,7 +8,7 @@ import { Round } from '../model/round';
 })
 export class GameService {
 
-  endpoint = environment.url "/round"
+  endpoint = environment.url+"/round"
 
   constructor(private http:HttpClient) { }
 
